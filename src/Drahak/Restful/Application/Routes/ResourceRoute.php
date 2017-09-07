@@ -70,7 +70,7 @@ class ResourceRoute extends Route implements IResourceRouter
 		$isActionDefined = $this->actionDictionary && !in_array($method, $common) ?
 			isset($this->actionDictionary[$method]) :
 			TRUE;
-		return ($this->flags & $method) == $method && $isActionDefined;
+		return ($this->getFlags() & $method) == $method && $isActionDefined;
 	}
 
 	/**

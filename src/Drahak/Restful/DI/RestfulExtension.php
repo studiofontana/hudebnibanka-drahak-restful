@@ -149,6 +149,16 @@ class RestfulExtension extends CompilerExtension
 			->addSetup('$service->addMapper(?, ?)', array(IResource::FILE, $this->prefix('@nullMapper')))
 			->addSetup('$service->addMapper(?, ?)', array(IResource::NULL, $this->prefix('@nullMapper')));
 
+		if (isset($config['mappers'])) {
+			foreach ($config['mappers'] as $mapperName => $mapper) {
+				$container->addDefinition($this->prefix($mapperName))
+					->setClass($mapper['class']);
+
+				$container->getDefinition($this->prefix('mapperContext'))
+					->addSetup('$service->addMapper(?, ?)', array($mapper['contentType'], $this->prefix('@' . $mapperName)));
+			}
+		}
+
 		// Input & validation
 		$container->addDefinition($this->prefix('inputFactory'))
 			->setClass('Drahak\Restful\Http\InputFactory');

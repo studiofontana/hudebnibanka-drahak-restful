@@ -51,7 +51,7 @@ class RouteListFactory extends Object implements IRouteListFactory
 		$loader->addDirectory($presentersRoot);
 		$loader->setCacheStorage($cacheStorage);
 		$loader->autoRebuild = $autoRebuild;
-//		$loader->tryLoad('Drahak\Restful\Application\IResourcePresenter');
+		$loader->tryLoad('Drahak\Restful\Application\IResourcePresenter');
 
 		$this->loader = $loader;
 		$this->cacheStorage = $cacheStorage;
@@ -174,11 +174,8 @@ class RouteListFactory extends Object implements IRouteListFactory
 	 */
 	private static function getClassReflection($className)
 	{
-		if (!method_exists($className, 'getReflection')) {
-			throw new InvalidStateException('Invalid class. Missing getReflection method on ' . $className);
-		}
-
-		return $className::getReflection();
+		$class = class_exists('Nette\Reflection\ClassType') ? 'Nette\Reflection\ClassType' : 'ReflectionClass';
+		return new $class($className);
 	}
 
 }

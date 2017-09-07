@@ -5,9 +5,13 @@ use Traversable;
 use Drahak\Restful\Application\IResourceRouter;
 use Nette\Application\IRouter;
 use Nette\Templating\Helpers;
-use Nette\Diagnostics\IBarPanel;
+use Tracy\IBarPanel;
 use Nette\Object;
 use Nette\Utils\Html;
+
+if (!interface_exists('Tracy\IBarPanel')) {
+	class_alias('Nette\Diagnostics\IBarPanel', 'Tracy\IBarPanel');
+}
 
 /**
  * ResourceRouterPanel to see REST API resource routes
@@ -68,7 +72,7 @@ class ResourceRouterPanel extends Object implements IBarPanel
 	public function getPanel()
 	{
 		ob_start();
-		$esc = callback('Nette\Templating\Helpers::escapeHtml');
+		$esc = ['Nette\Templating\Helpers', 'escapeHtml'];
 		$routes = $this->getResourceRoutes($this->router);
 		$methods = array(
 			IResourceRouter::GET => 'GET',
