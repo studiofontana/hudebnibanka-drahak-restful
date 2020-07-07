@@ -1,16 +1,17 @@
 <?php
 namespace Drahak\Restful\Converters;
 
-use Nette\Object;
 use Drahak\Restful\Utils\Strings;
+use Nette\SmartObject;
 
 /**
  * CamelCaseConverter
  * @package Drahak\Restful\Converters
  * @author Drahomír Hanák
  */
-class CamelCaseConverter extends Object implements IConverter
+class CamelCaseConverter implements IConverter
 {
+    use SmartObject;
 
     /**
      * Converts resource data keys to camelCase

@@ -1,9 +1,9 @@
 <?php
 namespace Drahak\Restful\Validation;
 
-use Nette\Object;
 use IteratorAggregate;
 use ArrayIterator;
+use Nette\SmartObject;
 use Traversable;
 
 /**
@@ -15,8 +15,9 @@ use Traversable;
  * @property-read string $message
  * @property-read int $code
  */
-class Error extends Object implements IteratorAggregate
+class Error implements IteratorAggregate
 {
+    use SmartObject;
 
 	/** @var string */
 	private $field;

@@ -2,20 +2,20 @@
 namespace Drahak\Restful\Application;
 
 use Nette\Application\IRouter;
-use Nette\Http\Url;
 use Nette\Http\UrlScript;
 use Nette\Http\Request;
 use Nette\Http\IRequest;
+use Nette\SmartObject;
 use Traversable;
-use Nette\Object;
 
 /**
  * MethodOptions
  * @package Drahak\Restful\Application
  * @author Drahomír Hanák
  */
-class MethodOptions extends Object
+class MethodOptions
 {
+    use SmartObject;
 
 	/** @var IRouter */
 	private $router;

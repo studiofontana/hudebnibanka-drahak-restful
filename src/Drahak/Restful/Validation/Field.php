@@ -1,7 +1,8 @@
 <?php
 namespace Drahak\Restful\Validation;
 
-use Nette\Object;
+
+use Nette\SmartObject;
 use Nette\Utils\Validators;
 
 /**
@@ -13,8 +14,9 @@ use Nette\Utils\Validators;
  * @property-read Rule[] $rules
  * @property-read IValidator $validator
  */
-class Field extends Object implements IField
+class Field implements IField
 {
+    use SmartObject;
 
 	/** @var array Default field error messages for validator */
 	public static $defaultMessages = array(

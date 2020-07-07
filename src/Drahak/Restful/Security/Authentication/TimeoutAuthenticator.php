@@ -1,17 +1,18 @@
 <?php
 namespace Drahak\Restful\Security\Authentication;
 
-use Nette\Object;
 use Drahak\Restful\Http\IInput;
 use Drahak\Restful\Security\RequestTimeoutException;
+use Nette\SmartObject;
 
 /**
  * Verify request timeout to avoid replay attack (needs to be applied with any HashAuthenticator)
  * @package Drahak\Restful\Security\Authentication
  * @author Drahomír Hanák
  */
-class TimeoutAuthenticator extends Object implements IRequestAuthenticator
+class TimeoutAuthenticator implements IRequestAuthenticator
 {
+    use SmartObject;
 
 	/** @var string */
 	private $requestTimeKey;

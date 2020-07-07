@@ -1,8 +1,9 @@
 <?php
 namespace Drahak\Restful\Resource;
 
-use Nette\Object;
+
 use Drahak\Restful\IResource;
+use Nette\SmartObject;
 
 /**
  * Link representation in resource
@@ -12,8 +13,9 @@ use Drahak\Restful\IResource;
  * @property-read string $href
  * @property-read string $rel
  */
-class Link extends Object implements IResource
+class Link implements IResource
 {
+    use SmartObject;
 
 	/** Link pointing on self */
 	const SELF = 'self';
